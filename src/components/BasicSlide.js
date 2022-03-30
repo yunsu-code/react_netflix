@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation} from 'swiper'
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
+import SlideLoading from './SlideLoading';
 import axios from 'axios'
 
-import SlideLoading from './SlideLoading';
 SwiperCore.use([Navigation])
 
-function BasicSlide( {category_title, request_url, ClickOpen} ) {
-    const [mv_data, setMovies] = useState(null); //데이터
-    const [loading, setLoading] = useState(false); //로딩중일때
-    const [error, setError] = useState(null); //에러시
+function BasicSlide( {category_title, request_url, handleClickOpen} ) {
+    const [mv_data, setMovies] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [type, setType] = useState(null);
     const navigationPrevRef = React.useRef(null)
     const navigationNextRef = React.useRef(null)
     
@@ -51,15 +52,13 @@ function BasicSlide( {category_title, request_url, ClickOpen} ) {
     useEffect(() => {
         const fetchDatas = async () => {
             try {
-                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
                 setError(null);
                 setMovies(null);
-                // loading 상태를 true 로.
-                    setLoading(true)
+                setLoading(true)
                 const res = await axios.get(
                     'https://api.themoviedb.org/3/' + request_url
                     );
-                    setMovies(res.data.results); // 데이터는 res.data 안에.
+                    setMovies(res.data.results);
                 } catch (e) {
                     setError(e);
                 }
@@ -68,6 +67,10 @@ function BasicSlide( {category_title, request_url, ClickOpen} ) {
                 }, 1500);
             };
         fetchDatas();
+
+        if(request_url.indexOf("tv?") !== -1) { setType("tv") } 
+        else { setType("movie") }
+
     }, [request_url]);
     
     if (loading) return <SlideLoading />;
@@ -85,14 +88,14 @@ function BasicSlide( {category_title, request_url, ClickOpen} ) {
             </div>
             <Swiper {...swiper_option} className="swiper-container popular__swiper">
                 {mv_data.map(mv => (
-                    <SwiperSlide className="swiper-slide" key={ mv.id }>
+                    <SwiperSlide className="swiper-slide" key={ mv.id } data-key={ mv.id } data-type={type} >
                         <Link to="#">
                             <div className="thumb">
-                                <img src={ `https://image.tmdb.org/t/p/original` + mv.backdrop_path } alt={ mv.title } />
+                                <img src={ 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } />
                             </div>
                         </Link>
-                        <div className="hover_el" onClick={ClickOpen}>
-                            <div className="thumb"><img src={ `https://image.tmdb.org/t/p/original` + mv.backdrop_path } alt={ mv.title } /></div>
+                        <div className="hover_el" onClick={handleClickOpen}>
+                            <div className="thumb"><img src={ 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } /></div>
                             <div className="info-box">
                                 <div className="title">{ mv.title || mv.name }</div>
                                 <div className="btn-wrap">

@@ -1,7 +1,7 @@
 /* reset */
 html,body,form,div,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,fieldset,th,td,button{margin:0;padding:0;border:0;font:inherit;font-size: 1.6rem;}
 html,body{font-size:10px !important; overflow-x: hidden;}
-body{-webkit-text-size-adjust:none;font-family:'Apple SD Gothic Neo','AppleGothic','Apple Gothic','-apple-system','NotoSansKR', sans-serif;font-weight:400;color:#fff;word-break:keep-all;background:#141414;letter-spacing:0px;width:100%;overflow-x:hidden;}
+body{-webkit-text-size-adjust:none;font-family:'Apple SD Gothic Neo','AppleGothic','Apple Gothic','-apple-system','NotoSansKR', sans-serif;font-weight:400;color:#fff !important;word-break:keep-all;background:#141414;letter-spacing:0px;width:100%;overflow-x:hidden;overflow-y:hidden;}
 input,textarea,select,button{font:inherit;vertical-align:middle;padding:0;margin:0;color:#fff;font-family:'Apple SD Gothic Neo','AppleGothic','Apple Gothic','-apple-system','NotoSansKR',sans-serif;}
 .btn{font-family: 'NotoSansKR', sans-serif;}
 .ios .btn{font-family:'Apple SD Gothic Neo','AppleGothic','Apple Gothic','-apple-system';}
