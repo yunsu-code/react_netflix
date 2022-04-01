@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo_PC from '../../assets/img/Netflix_logo_pc.png';
 import Logo_MO from '../../assets/img/Netflix_logo_mo.png';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import { visuallyHidden } from '@mui/utils';
+import { SearchIcon, AlarmIcon } from "../../MuiIcons.js";
 import './header.scss';
 
 function NavList({menulist}) {
@@ -19,7 +23,7 @@ function ToolList({tool}) {
     );
 }
 
-function Login_Header() {
+export default function Login_Header() {
     var menu = [
         {
             list : "홈",
@@ -107,19 +111,28 @@ function Login_Header() {
                 <div className="hd-right">
                     <div className="flex-center">
                         <div className="menu search none">
-                            <button type="button" className="ico-search">
-                                <span className="blind">검색하기</span>
-                            </button>
+                            <IconButton aria-label="search" className="search-btn" >
+                                <SearchIcon className="ico" />
+                                <Box component="span" sx={visuallyHidden}>검색하기</Box>
+                            </IconButton>
+                            {/* <button type="button" className="ico-search">
+                            </button> */}
                             <div className="input-wrap relative">
                                 <input type="text" className="search-input" placeholder="검색어를 입력해주세요." />
-                                <button type="button" className="ico-delete"></button>
+                                <button type="button" className="ico-delete">
+                                    <Box component="span" sx={visuallyHidden}>삭제</Box>
+                                </button>
                             </div>
                         </div>
                         <Link to="#" className="menu kids">키즈</Link>
                         <div className="menu alarm tooltip">
-                            <button type="button" className="ico-alarm">
-                                <span className="blind">알림</span>
-                            </button>
+                            <IconButton aria-label="alarm" >
+                                <AlarmIcon className="ico" />
+                                <Box component="span" sx={visuallyHidden}>검색하기</Box>
+                            </IconButton>
+                            {/* <button type="button" className="ico-alarm">
+                                <Box component="span" sx={visuallyHidden}>알림</Box>
+                            </button> */}
                             <div className="tooltip-box right type1">
                                 <ul>
                                     {tool_list.map(tool => (
@@ -130,9 +143,8 @@ function Login_Header() {
                         </div>
                         <div className="menu my tooltip">
                             <button className="flex-center" type="button">
-                                <span className="blind">프로필</span>
-                                <span className="profile">
-                                </span>
+                                <Box component="span" sx={visuallyHidden}>프로필</Box>
+                                <span className="profile"></span>
                                 <span className="ico-fill-down"></span>
                             </button>
                             <div className="tooltip-box right type1">
@@ -149,5 +161,3 @@ function Login_Header() {
         </header>
     );
 }
-
-export default Login_Header;

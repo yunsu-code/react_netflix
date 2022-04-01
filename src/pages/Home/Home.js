@@ -6,6 +6,7 @@ import RandomMain from "../../components/RandomMain";
 import BasicSlide from './../../components/BasicSlide';
 import MoviePopup from "../../components/MoviePopup";
 import axios from 'axios'
+import bg from '../../assets/img/bg_dark.jpg';
 import "./home.scss";
 
 const key = '679db3d03f27f5e2b0684e936ccc0774'
@@ -39,7 +40,7 @@ export default function Home() {
     const [open, setOpen] = useState(false);
     const [mv_id, setKey] = useState(null);
     const [title, setTitle] = useState(null);
-    const [backdrop, setBackdrop] = useState(null);
+    const [backdrop, setBackdrop] = useState(bg);
     const [overview, setOverview] = useState(null);
     const [date, setDate] = useState(null);
     const [lang, setLang] = useState(null);
@@ -48,8 +49,8 @@ export default function Home() {
 
     const handleClickOpen = (e) => {
         setOpen(true);
-        const mv_id = e.target.closest(".swiper-slide").getAttribute('data-key');
-        const mv_type = e.target.closest(".swiper-slide").getAttribute('data-type');
+        const mv_id = e.target.closest(".swiper-slide, .home-main").getAttribute('data-key')
+        const mv_type = e.target.closest(".swiper-slide, .home-main").getAttribute('data-type')
         setKey(mv_id)
         const root = 'https://api.themoviedb.org/3/' + mv_type + '/' + mv_id + '?api_key=' + key + '&language=ko-KR'
         const actor_root = 'https://api.themoviedb.org/3/' + mv_type + '/' + mv_id + '/credits?api_key=' + key + '&language=ko-KR'
@@ -64,7 +65,7 @@ export default function Home() {
                 const actor_5 = actor.slice(0, 5);
 
                 setTitle(mv.title || mv.name)
-                setBackdrop(mv.backdrop_path)
+                setBackdrop('https://image.tmdb.org/t/p/original' +  mv.backdrop_path)
                 setOverview( mv.overview)
                 setDate(mv.release_date)
                 setLang(mv.original_language)
@@ -80,7 +81,6 @@ export default function Home() {
                     actorArray.push(actor_5[a].name)
                 }
                 setActor(actorArray);
-
             })
         )
     };
@@ -88,7 +88,7 @@ export default function Home() {
     const handleClose = () => {
         setOpen(false);
         setTitle(null)
-        setBackdrop(null)
+        setBackdrop(bg)
         setOverview( null)
         setDate(null)
         setLang(null)
@@ -97,7 +97,7 @@ export default function Home() {
     };
     return (
         <div id="content" className='home'>
-            <RandomMain />
+            <RandomMain handleClickOpen = {handleClickOpen} />
             <div className="mv_con_wrap">
                 <RankSlide handleClickOpen = {handleClickOpen} request_url={'https://api.themoviedb.org/3/movie/popular?api_key=679db3d03f27f5e2b0684e936ccc0774&language=ko-KR&page=1'} />
                 <BasicSlide handleClickOpen = {handleClickOpen} category_title={"곧 개봉예정"} request_url={'movie/upcoming?api_key=' + key + '&language=ko-KR&page=1'} />

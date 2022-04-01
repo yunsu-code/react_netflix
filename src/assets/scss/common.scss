@@ -107,7 +107,7 @@
 .mgr15{margin-right: 15px;}
 .mgr20{margin-right: 20px;}
 
-// ===== icon //
+// ===== *** 기존 vanila javascript 버전에서 사용한 icon / 현재는 사용하지 않음 *** //
 [class^=ico-]{
     display:inline-block;
     vertical-align:middle;
@@ -252,47 +252,19 @@ button {
         font-size: 2.4rem;
         border-radius: 8px;
         background-color: rgba(109,109,110,0.4);
-        padding: 11px 30px 11px 64px;
-        &.play-btn {
+        padding: 11px 30px 11px 30px;
+        &.play {
             position: relative;
             background-color: #cc0812;
             transition: background-color 0.2s;
-            &::before {
-                display: inline-block;
-                vertical-align:middle;
-                background-repeat:no-repeat;
-                background-size:100% 100%;
-                content: "";
-                width: 25px;
-                height: 25px;
-                background-image: url("data:image/svg+xml,%3Csvg fill='%23fff' height='24' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='5 3 19 12 5 21 5 3'/%3E%3C/svg%3E");
-                position: absolute;
-                top: 50%;
-                left: 25px;
-                transform: translateY(-50%);
-            }
             &:hover {
                 background-color: #bb0009;
                 transition: background-color 0.2s;
             }
         }
-        &.info-btn {
+        &.info {
             position: relative;
             transition: background-color 0.2s;
-            &::before {
-                display: inline-block;
-                vertical-align:middle;
-                background-repeat:no-repeat;
-                background-size:100% 100%;
-                content: "";
-                width: 35px;
-                height: 35px;
-                background-image: url("data:image/svg+xml,%3Csvg style='enable-background:new 0 0 16 16;' fill='%23fff' version='1.1' viewBox='0 0 16 16' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Guide'/%3E%3Cg id='Layer_2'%3E%3Cg%3E%3Cpath d='M8,2C4.69,2,2,4.69,2,8s2.69,6,6,6s6-2.69,6-6S11.31,2,8,2z M8,13c-2.76,0-5-2.24-5-5s2.24-5,5-5s5,2.24,5,5 S10.76,13,8,13z'/%3E%3Cpath d='M8,6.85c-0.28,0-0.5,0.22-0.5,0.5v3.4c0,0.28,0.22,0.5,0.5,0.5s0.5-0.22,0.5-0.5v-3.4C8.5,7.08,8.28,6.85,8,6.85z'/%3E%3Cpath d='M8.01,4.8C7.75,4.78,7.51,5.05,7.5,5.32c0,0.01,0,0.07,0,0.08c0,0.27,0.21,0.47,0.49,0.48c0,0,0.01,0,0.01,0 c0.27,0,0.49-0.24,0.5-0.5c0-0.01,0-0.11,0-0.11C8.5,4.98,8.29,4.8,8.01,4.8z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-                position: absolute;
-                top: 50%;
-                left: 20px;
-                transform: translateY(-50%);
-            }
             &:hover {
                 background-color: rgba(109,109,110,0.7);
                 transition: background-color 0.2s;
@@ -301,77 +273,37 @@ button {
         @include mq (ll){
             font-size: 2vw;
             border-radius: 8px;
-            padding: 1vw 2.8vw 1vw 5.5vw;
-            &.play-btn {
-                &::before {
-                    width: 2.4vw;
-                    height: 2.4vw;
-                    left: 2.5vw;
-                }
+            padding: 1vw 2.8vw 1vw 3.3vw;
+            &.play {
             }
-            &.info-btn {
-                &::before {
-                    width: 3vw;
-                    height: 3vw;
-                    left: 1.8vw;
-                }
+            &.info {
             }
         }
         @include mq (lg){
             font-size: 2.5vw;
             border-radius: 8px;
-            padding: 1.1vw 3vw 1.1vw 6.2vw;
-            &.play-btn {
-                &::before {
-                    width: 2.6vw;
-                    height: 2.6vw;
-                    left: 2.6vw;
-                }
+            padding: 1.1vw 3vw 1.1vw 3.3vw;
+            &.play {
             }
-            &.info-btn {
-                &::before {
-                    width: 3.2vw;
-                    height: 3.2vw;
-                    left: 2vw;
-                }
+            &.info {
             }
         }
         @include mq (md){
             font-size: 20px;
             border-radius: 8px;
-            padding: 9px 23px 9px 49px;
-            &.play-btn {
-                &::before {
-                    width: 22px;
-                    height: 22px;
-                    left: 19px;
-                }
+            padding: 9px 23px 9px 31px;
+            &.play {
             }
-            &.info-btn {
-                &::before {
-                    width: 28px;
-                    height: 28px;
-                    left: 15px;
-                }
+            &.info {
             }
         }
         @include mq (sm){
             font-size: 15px;
             border-radius: 8px;
-            padding: 7px 16px 7px 37px;
-            &.play-btn {
-                &::before {
-                    width: 16px;
-                    height: 16px;
-                    left: 15px;
-                }
+            padding: 7px 16px 7px 20px;
+            &.play {
             }
-            &.info-btn {
-                &::before {
-                    width: 21px;
-                    height: 21px;
-                    left: 11px;
-                }
+            &.info {
             }
         }
     }

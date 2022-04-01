@@ -1,9 +1,8 @@
+import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import bg from '../assets/img/bg.jpg';
-import React from 'react';
 
-
-function SlideLoading() {
+export default function SlideLoading() {
 
     const swiper_option = {
         slidesPerView : 2,
@@ -51,4 +50,3 @@ function SlideLoading() {
         </section>
     )
 }
-export default SlideLoading;

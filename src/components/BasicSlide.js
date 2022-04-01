@@ -3,11 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation} from 'swiper'
 import React, { useState, useEffect } from 'react';
 import SlideLoading from './SlideLoading';
+import bg from '../assets/img/bg.jpg'; //이미지 없을때
 import axios from 'axios'
 
 SwiperCore.use([Navigation])
 
-function BasicSlide( {category_title, request_url, handleClickOpen} ) {
+export default function BasicSlide( {category_title, request_url, handleClickOpen} ) {
     const [mv_data, setMovies] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -91,11 +92,11 @@ function BasicSlide( {category_title, request_url, handleClickOpen} ) {
                     <SwiperSlide className="swiper-slide" key={ mv.id } data-key={ mv.id } data-type={type} >
                         <Link to="#">
                             <div className="thumb">
-                                <img src={ 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } />
+                                <img src={ (mv.backdrop_path == null) ? bg : 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } />
                             </div>
                         </Link>
                         <div className="hover_el" onClick={handleClickOpen}>
-                            <div className="thumb"><img src={ 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } /></div>
+                            <div className="thumb"><img src={ (mv.backdrop_path == null) ? bg : 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } /></div>
                             <div className="info-box">
                                 <div className="title">{ mv.title || mv.name }</div>
                                 <div className="btn-wrap">
@@ -114,5 +115,3 @@ function BasicSlide( {category_title, request_url, handleClickOpen} ) {
         </section>
     );
 }
-
-export default BasicSlide;

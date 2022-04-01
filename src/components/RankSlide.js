@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation} from 'swiper'
 import React, { useState, useEffect  } from 'react';
-import axios from 'axios'
-
 import SlideLoading from './SlideLoading';
+import axios from 'axios'
 SwiperCore.use([Navigation])
 
-function RankSlide( {handleClickOpen, request_url} ) {
+export default function RankSlide( {handleClickOpen, request_url} ) {
     const [mv_data, setMovies] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -67,8 +66,10 @@ function RankSlide( {handleClickOpen, request_url} ) {
             }, 1500);
         };
         fetchDatas();
+
         if(request_url.indexOf("tv?") !== -1) { setType("tv") } 
         else { setType("movie") }
+
     }, [request_url]);
     
     if (loading) return <SlideLoading />;
@@ -91,11 +92,11 @@ function RankSlide( {handleClickOpen, request_url} ) {
                     <SwiperSlide className="swiper-slide" key={ mv.id } data-key={ mv.id } data-type={type} >
                         <Link to="#">
                             <div className="thumb">
-                                <img src={ `https://image.tmdb.org/t/p/w500` + mv.poster_path } alt={ mv.title } />
+                                <img src={ 'https://image.tmdb.org/t/p/w500' + mv.poster_path } alt={ mv.title } />
                             </div>
                         </Link>
-                        <div className="hover_el" onClick={handleClickOpen}>
-                            <div className="thumb"><img src={ `https://image.tmdb.org/t/p/original` + mv.backdrop_path } alt={ mv.title } /></div>
+                        <div className="hover_el" onClick={ handleClickOpen }>
+                            <div className="thumb"><img src={ 'https://image.tmdb.org/t/p/original' + mv.backdrop_path } alt={ mv.title } /></div>
                             <div className="info-box">
                                 <div className="title">{ mv.title }</div>
                                 <div className="btn-wrap">
@@ -114,5 +115,3 @@ function RankSlide( {handleClickOpen, request_url} ) {
         </section>
     );
 }
-
-export default RankSlide;

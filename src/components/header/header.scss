@@ -54,7 +54,7 @@ header {
     }
     .hd-right {
         .menu {
-            margin-left: 16px;
+            margin-left: 7px;
             &:first-child {margin-left: 0;}
             &.search {
                 transition: max-width 0.5s;
@@ -62,12 +62,17 @@ header {
                 overflow: hidden;
                 position: relative;
                 &.open {max-width: 300px;}
-                &.none {max-width: 26px;}
-                .ico-search {
+                &.none {max-width: 42px;}
+                .search-btn {
                     position: relative;
                     z-index: 10;
-                    width: 26px;
-                    height: 26px;
+                    // width: 26px;
+                    // height: 26px;
+                    .ico {
+                        width: 26px;
+                        height: 26px;
+                        fill: none;
+                    }
                 }
                 .input-wrap {
                     display: inline-block;
@@ -94,7 +99,8 @@ header {
                 }
             }
             &.alarm {
-                .ico-alarm {
+                color:unset;
+                .ico {
                     width: 32px;
                     height: 30px;
                 } 
@@ -196,10 +202,15 @@ header {
             .menu {
                 font-size: 1.5rem;
                 &.search {
-                    &.none {max-width: 24px;}
-                    .ico-search {
-                        width: 24px;
-                        height: 24px;
+                    &.none {max-width: 40px;}
+                    .search-btn {
+                        // width: 24px;
+                        // height: 24px;
+                        .ico {
+                            width: 24px;
+                            height: 24px;
+                            fill: none;
+                        }
                     }
                     .input-wrap {
                         width: 220px;
@@ -210,7 +221,7 @@ header {
                     }
                 }
                 &.alarm {
-                    .ico-alarm {
+                    .ico {
                         width: 30px;
                         height: 28px;
                     } 
@@ -277,7 +288,7 @@ header {
     header {
         .hd-right {
             .menu {
-                margin-left: 18px;
+                margin-left: 10px;
                 &.search {
                     .input-wrap {
                         width: 200px;
@@ -310,9 +321,14 @@ header {
             .menu {
                 margin-left: 14px;
                 &.search {
-                    .ico-search {
-                        width: 22px; //
-                        height: 22px; //
+                    .search-btn {
+                        // width: 22px;
+                        // height: 22px;
+                        .ico {
+                            width: 22px;
+                            height: 22px;
+                            fill: none;
+                        }
                     }
                     .input-wrap {
                         width: 48vw;

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import Button from '@mui/material/Button';
+import {PlayIcon, InfoIcon} from "../MuiIcons.js";
 class RandomMainTest extends React.Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ class RandomMainTest extends React.Component {
     
     render() {
         return (
-        <div className="home-main">
+            <div className="home-main" data-key={ this.state.id } data-type="movie">
                 <div className="container">
                     <div className="background">
                         <img src={ 'https://image.tmdb.org/t/p/original' + this.state.backdrop } alt={ this.state.title } />
@@ -43,7 +44,7 @@ class RandomMainTest extends React.Component {
                             <source src="../../assets/video/main_video.mp4" type="video/mp4" />
                             <span className="blind">{ this.state.title } 예고편 비디오</span>
                         </video>
-                        <button type="button" className="ico-mute sound-btn circle"><span className="blind">소리 버튼</span></button>
+                        <button variant="contained" className="ico-mute sound-btn circle"><span className="blind">소리 버튼</span></button>
                     </div>
                     <div className="main-contents">
                         <div className="article">
@@ -51,8 +52,8 @@ class RandomMainTest extends React.Component {
                             <p className="plot">{ this.state.overview }</p>
                         </div>
                         <div className="btn-wrap">
-                            <button type="button" className="basic play-btn mgr10">재생</button>
-                            <button type="button" className="basic info-btn" data-id={ this.state.id } data-type="movie" >상세보기</button>
+                            <Button variant="contained" className="basic play mgr10" startIcon={<PlayIcon />}>재생</Button>
+                            <Button variant="contained" className="basic info" startIcon={<InfoIcon />} onClick={this.props.handleClickOpen}>상세보기</Button>
                         </div>
                     </div>
                 </div>

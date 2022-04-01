@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import PlayIcon from "../MuiIcons.js";
+import bg from '../assets/img/bg.jpg'; //이미지 없을때
 
-export default function MoviePopup({ handleClose, mv_id, title, backdrop, overview, date, lang, genre, actor }) {
+export default function MoviePopup({ handleClose, title, backdrop, overview, date, lang, genre, actor }) {
 	return (
 		<div className="MV__popup">
             <div className="popup-wrap">
@@ -9,11 +12,11 @@ export default function MoviePopup({ handleClose, mv_id, title, backdrop, overvi
                     <div className="pop-inner">
                         <button onClick={ handleClose } type="button" className="ico-delete circle close-btn"></button>
                         <div className="thumb">
-                            <img src={'https://image.tmdb.org/t/p/original' + backdrop } alt={title + "포스터"} />
+                            <img src={  (backdrop == null) ? bg : backdrop  } alt={title + "포스터"} />
                             <div className="title-box">
                                 <div className="title">{title}</div>
                                 <div className="btn-wrap">
-                                    <button type="button" className="basic play-btn">재생</button>
+                                    <Button variant="contained" className="basic play" startIcon={<PlayIcon />} >재생</Button>
                                     <button type="button" className="ico-add circle tooltip"><div className="tooltip-box type2">내가 찜한 콘텐츠에 추가</div></button>
                                     <button type="button" className="ico-like circle tooltip"><div className="tooltip-box type2">좋아요</div></button>
                                     <button type="button" className="ico-dislike circle tooltip"><div className="tooltip-box type2">맘에 안들어요</div></button>
