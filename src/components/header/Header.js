@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Logo_PC from '../../assets/img/Netflix_logo_pc.png';
 import Logo_MO from '../../assets/img/Netflix_logo_mo.png';
@@ -78,8 +78,58 @@ export default function Login_Header() {
             key : "넷플릭스에서 로그아웃",
         },
     ]
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);    
+        document.addEventListener("click", (e) => {
+            let search = document.querySelectorAll("header .menu.search")[0].classList
+            if(search.contains("open")){
+                if(!e.target.closest(".search.open")){
+                    search.add("none")
+                    search.remove("open");
+                }
+            }
+        })
+    });
+
+    const searchEvent = (e) => {
+        let $search = e.target.closest(".search").classList;
+        if( $search.contains("none")){
+            $search.remove("none")
+            $search.add("open");
+        }
+        else if( $search.contains("open")){
+            $search.add("none")
+            $search.remove("open");
+        }
+    }
+
+    const searchDelEvent = () => {
+		let	search_input = document.querySelectorAll("header .search-input")[0];
+		search_input.value = null;
+    }
+
+    let mo_nav_list = document.querySelectorAll("header .mo-nav-list .nav-list")[0]
+    let body = document.getElementsByTagName("body")[0]
+
+    const menuOpenEvent = () => {
+        mo_nav_list.classList.toggle("hidden")
+		body.classList.toggle("pop-open")
+    }
+
+    const menuCloseEvent = (e) => {
+        if(e.target.tagName === "UL") {
+            mo_nav_list.classList.toggle("hidden")
+            body.classList.toggle("pop-open")
+        }
+    }
+
     return (
-        <header>
+        <header className={scrollPosition < 100 ? "" : "scroll"}>
             <div className="hd-container">
                 <div className="hd-left flex-center">
                     <div className="netflix-logo">
@@ -97,8 +147,8 @@ export default function Login_Header() {
                     </div>
                 </div>
                 
-                <div className="mo-nav-list display-none">
-                    <button type="button">카테고리<span className="ico-fill-down"></span></button>
+                <div className="mo-nav-list display-none"  onClick={ menuCloseEvent }>
+                    <button type="button" onClick={ menuOpenEvent } >카테고리<span className="ico-fill-down"></span></button>
                     <div className="nav-list hidden">
                         <ul>
                             {menu.map(menulist => (
@@ -111,15 +161,13 @@ export default function Login_Header() {
                 <div className="hd-right">
                     <div className="flex-center">
                         <div className="menu search none">
-                            <IconButton aria-label="search" className="search-btn" >
+                            <IconButton aria-label="search" className="search-btn" onClick={ searchEvent } >
                                 <SearchIcon className="ico" />
                                 <Box component="span" sx={visuallyHidden}>검색하기</Box>
                             </IconButton>
-                            {/* <button type="button" className="ico-search">
-                            </button> */}
                             <div className="input-wrap relative">
                                 <input type="text" className="search-input" placeholder="검색어를 입력해주세요." />
-                                <button type="button" className="ico-delete">
+                                <button type="button" className="ico-delete" onClick={ searchDelEvent }>
                                     <Box component="span" sx={visuallyHidden}>삭제</Box>
                                 </button>
                             </div>
@@ -130,9 +178,6 @@ export default function Login_Header() {
                                 <AlarmIcon className="ico" />
                                 <Box component="span" sx={visuallyHidden}>검색하기</Box>
                             </IconButton>
-                            {/* <button type="button" className="ico-alarm">
-                                <Box component="span" sx={visuallyHidden}>알림</Box>
-                            </button> */}
                             <div className="tooltip-box right type1">
                                 <ul>
                                     {tool_list.map(tool => (
