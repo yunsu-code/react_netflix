@@ -13,7 +13,7 @@ function App() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
     if (Mobile()){//모바일일 경우
-        document.getElementsByTagName('html')[0].classList.add('mobile');
+        document.getElementsByTagName('html')[0].classList.add('mobile'); 
     } else {//모바일 외
         document.getElementsByTagName('html')[0].classList.add('web');
     }
