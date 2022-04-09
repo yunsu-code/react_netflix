@@ -1,0 +1,355 @@
+@import "../../assets/scss/mixin";
+
+// ===== header //
+header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 68px;
+    box-shadow: inset 0 50px 30px -20px rgba($color: #000, $alpha: 0.6);
+    transition: background-color 0.2s;
+    &.scroll {
+        background-color: #141414;
+        transition: background-color 0.2s;
+    }
+    .hd-container {
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100%;
+        padding: 0 4vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .hd-left {
+        .netflix-logo {
+            width: 92.5px;
+            height: 25px;
+            margin-right: 25px;
+            img {
+                width: 100%;
+            }
+            .pc-logo {
+                display: block;
+            }
+            .mo-logo {
+                display: none;
+            }
+        }
+        .pc-nav-list {
+            .nav {
+                float: left;
+                margin-left: 20px;
+                transition: opacity 0.3s;
+                @include tt_shadow;
+                &.active {
+                    a {font-weight: 700;}
+                }
+                &:hover:not(.active) {
+                    transition: opacity 0.3s;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+    .hd-right {
+        .menu {
+            margin-left: 7px;
+            &:first-child {margin-left: 0;}
+            &.search {
+                transition: max-width 0.5s;
+                white-space: nowrap;
+                overflow: hidden;
+                position: relative;
+                &.open {max-width: 300px;}
+                &.none {max-width: 42px;}
+                .search-btn {
+                    position: relative;
+                    z-index: 10;
+                    // width: 26px;
+                    // height: 26px;
+                    .ico {
+                        width: 26px;
+                        height: 26px;
+                        fill: none;
+                    }
+                }
+                .input-wrap {
+                    display: inline-block;
+                    width: 250px;
+                    margin-left: 5px;
+                }
+                input {
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 7px 34px 7px 7px;
+                    border-radius: 3px;
+                    border: 1px solid rgba($color: #fff, $alpha: 0.3);
+                    font-size: 1.4rem;
+                    color: #fff;
+                    &::placeholder {font-size: 1.4rem;}
+                }
+                .ico-delete {
+                    width: 14px;
+                    height: 14px;
+                    position: absolute;
+                    top: 50%;
+                    right: 10px;
+                    transform: translateY(-50%);
+                }
+            }
+            &.alarm {
+                color:unset;
+                .ico {
+                    width: 32px;
+                    height: 30px;
+                } 
+            }
+            &.my {
+                &:hover {
+                    .ico-fill-down {
+                        transition: transform 0.5s;
+                        transform: rotate(180deg);
+                    }
+                }
+                .ico-fill-down {
+                    width: 16px;
+                    height: 16px;
+                    transition: transform 0.5s;
+                }
+                .profile {
+                    display: block;
+                    width: 38px;
+                    height: 38px;
+                    overflow: hidden;
+                    margin-right: 5px;
+                    position: relative;
+                    background-image: url(../../assets/img/blank-profile.png);
+                    background-size: cover;
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+    .mo-nav-list {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: -40px;
+        text-align: center;
+        button {
+            vertical-align: middle;
+            @include tt_shadow;
+            .ico-fill-down {
+                width: 15px;
+                height: 15px;
+                margin-left: 8px;
+            }
+        }
+        .nav-list {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            background-color: rgba($color: #000, $alpha: 0.8);
+            overflow-y: auto;
+            transition: all 0.2s;
+            ul {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100%;
+                min-height: 500px;
+                .nav {
+                    margin-bottom: 46px;
+                    transition: opacity 0.3s;
+                    @include tt_shadow;
+                    &.active {
+                        a {font-weight: 700;}
+                    }
+                    &:hover:not(.active) {
+                        transition: opacity 0.3s;
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include mq (ll){
+    header {
+        .hd-left {
+            .netflix-logo {
+                margin-right: 20px;
+            }
+            .pc-nav-list {
+                .nav {
+                    font-size: 1.5rem !important;
+                }
+            }
+        }
+        .hd-right {
+            .menu {
+                font-size: 1.5rem;
+                &.search {
+                    &.none {max-width: 40px;}
+                    .search-btn {
+                        // width: 24px;
+                        // height: 24px;
+                        .ico {
+                            width: 24px;
+                            height: 24px;
+                            fill: none;
+                        }
+                    }
+                    .input-wrap {
+                        width: 220px;
+                        margin-left: 5px;
+                    }
+                    input {
+                        padding: 6px 34px 6px 6px;
+                    }
+                }
+                &.alarm {
+                    .ico {
+                        width: 30px;
+                        height: 28px;
+                    } 
+                }
+                &.my {
+                    .ico-fill-down {
+                        width: 14px;
+                        height: 14px;
+                    }
+                    .profile {
+                        width: 36px;
+                        height: 36px;
+                    }
+                }
+            }
+        }
+    }
+}
+@include mq (1100px){
+    header {
+        .hd-right {
+            .menu {
+                &.kids {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+@include mq (lg){
+    header {
+        height: 60px;
+        padding-bottom: 52px;
+        box-shadow: inset -3px 103px 37px -33px rgba(0, 0, 0, 0.6);
+        .hd-container {
+            position: relative;
+        }
+        .hd-left {
+            .pc-nav-list {
+                display: none;
+            }
+        }
+        .hd-right {
+            .menu {
+                &.my {
+                    .profile {
+                        margin-right: 0;
+                    }
+                    .ico-fill-down {
+                        display: none;
+                    }
+                }
+                &.alarm {
+                    display: none;
+                }
+            }
+        }
+        .mo-nav-list {
+            display: block !important;
+        }
+    }
+}
+@include mq (md){
+    header {
+        .hd-right {
+            .menu {
+                margin-left: 10px;
+                &.search {
+                    .input-wrap {
+                        width: 200px;
+                    }
+                    input {
+                        font-size: 1.3rem;
+                        &::placeholder {font-size: 1.3rem;}
+                    }
+                }
+            }
+        }
+    }
+}
+@include mq (sm){
+    header {
+        .hd-left {
+            .netflix-logo {
+                width: 28px;
+                height: 28px;
+                margin-right: 5px;
+                .pc-logo {
+                    display: none;
+                }
+                .mo-logo {
+                    display: block;
+                }    
+            }
+        }
+        .hd-right {
+            .menu {
+                margin-left: 8px;
+                &.search {
+                    .search-btn {
+                        // width: 22px;
+                        // height: 22px;
+                        .ico {
+                            width: 22px;
+                            height: 22px;
+                            fill: none;
+                        }
+                    }
+                    .input-wrap {
+                        width: 48vw;
+                        input {
+                            font-size: 1.2rem;
+                            &::placeholder {font-size: 1.2rem;}
+                        }
+                    }
+                }
+                &.my {
+                    .profile {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+        .mo-nav-list {
+            button {
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
