@@ -27,7 +27,7 @@ export default function Login_Header() {
     var menu = [
         {
             list : "홈",
-            to : "/",
+            to : "/home",
             key : "home",
         },
         {

@@ -13,7 +13,7 @@ class RandomMainTest extends React.Component {
         }
     }
     callApi = () => {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=679db3d03f27f5e2b0684e936ccc0774&language=ko-KR&page=1")
+        fetch("movie/popular?api_key=679db3d03f27f5e2b0684e936ccc0774&language=ko-KR&page=1")
         .then(res => res.json())
         .then(json => {
             const num = json.results.length;
@@ -40,10 +40,10 @@ class RandomMainTest extends React.Component {
                 <div className="container">
                     <div className="background">
                         <img src={ 'https://image.tmdb.org/t/p/original' + this.state.backdrop } alt={ this.state.title } />
-                        <video className="main-video" muted preload="metadata">
+                        {/* <video className="main-video" muted preload="metadata">
                             <source src="../../assets/video/main_video.mp4" type="video/mp4" />
                             <span className="blind">{ this.state.title } 예고편 비디오</span>
-                        </video>
+                        </video> */}
                         <button variant="contained" className="ico-mute sound-btn circle"><span className="blind">소리 버튼</span></button>
                     </div>
                     <div className="main-contents">

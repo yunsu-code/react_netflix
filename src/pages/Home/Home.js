@@ -52,8 +52,8 @@ export default function Home() {
         const mv_id = e.target.closest(".swiper-slide, .home-main").getAttribute('data-key')
         const mv_type = e.target.closest(".swiper-slide, .home-main").getAttribute('data-type')
         setKey(mv_id)
-        const root = 'https://api.themoviedb.org/3/' + mv_type + '/' + mv_id + '?api_key=' + key + '&language=ko-KR'
-        const actor_root = 'https://api.themoviedb.org/3/' + mv_type + '/' + mv_id + '/credits?api_key=' + key + '&language=ko-KR'
+        const root = mv_type + '/' + mv_id + '?api_key=' + key + '&language=ko-KR'
+        const actor_root = mv_type + '/' + mv_id + '/credits?api_key=' + key + '&language=ko-KR'
 
         axios.all([axios.get(root), axios.get(actor_root)])
         .then(
@@ -99,7 +99,7 @@ export default function Home() {
         <div id="content" className='home'>
             <RandomMain handleClickOpen = {handleClickOpen} />
             <div className="mv_con_wrap">
-                <RankSlide handleClickOpen = {handleClickOpen} request_url={'https://api.themoviedb.org/3/movie/popular?api_key=679db3d03f27f5e2b0684e936ccc0774&language=ko-KR&page=1'} />
+                <RankSlide handleClickOpen = {handleClickOpen} request_url={'movie/popular?api_key=679db3d03f27f5e2b0684e936ccc0774&language=ko-KR&page=1'} />
                 <BasicSlide handleClickOpen = {handleClickOpen} category_title={"곧 개봉예정"} request_url={'movie/upcoming?api_key=' + key + '&language=ko-KR&page=1'} />
                 <BasicSlide handleClickOpen = {handleClickOpen} category_title={"넷플릭스 오리지널"} request_url={'discover/tv?api_key=' + key + '&with_networks=213&language=ko-KR'} />
                 <BasicSlide handleClickOpen = {handleClickOpen} category_title={"판타지 영화"} request_url={'discover/movie?api_key=' + key + '&with_genres=' + mv_genres.fantasy + '&language=ko-KR'} />

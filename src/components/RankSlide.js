@@ -69,7 +69,7 @@ export default function RankSlide( {handleClickOpen, request_url} ) {
 
         if(request_url.indexOf("tv?") !== -1) { setType("tv") } 
         else { setType("movie") }
-
+        return () => setLoading(false); //router 이동시 메모리 lack 에러
     }, [request_url]);
     
     if (loading) return <SlideLoading />;
