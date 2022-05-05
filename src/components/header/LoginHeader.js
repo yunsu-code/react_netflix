@@ -185,7 +185,7 @@ class LoginHeader extends Component {
                             </div>
                             <Link to="#" className="menu kids">키즈</Link>
                             <div className="menu alarm tooltip">
-                                <IconButton aria-label="alarm" >
+                                <IconButton aria-label="alarm" > 
                                     <AlarmIcon className="ico" />
                                     <Box component="span" sx={visuallyHidden}>검색하기</Box>
                                 </IconButton>
