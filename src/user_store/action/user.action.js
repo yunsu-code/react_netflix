@@ -8,7 +8,7 @@ export const userActions = {
     logout,
     register,
     getAll,
-    // delete: _delete
+    delete: _delete
 };
 
 function login( useremail, password ) {
@@ -19,13 +19,14 @@ function login( useremail, password ) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    history.push('/');
+                    history.push('/home');
                 },
                 error => {
                     dispatch(failure(error));
                     dispatch(alertAction.error(error));
                 }
             );
+            console.log("login login")
     };
 
     function request(user) { return { type: userConstant.LOGIN_REQUEST, user } }
@@ -35,7 +36,7 @@ function login( useremail, password ) {
 
 function logout() {
     userService.logout();
-    console.log("sssssss")
+    console.log("logout logout")
     return { type: userConstant.LOGOUT };
 }
 
@@ -47,14 +48,15 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
-                    history.push('/login');
-                    dispatch(alertAction.success('Registration successful'));
+                    history.push('/');
+                    dispatch(alertAction.success('회원가입에 성공했습니다.'));
                 },
                 error => {
                     dispatch(failure(error));
                     dispatch(alertAction.error(error));
                 }
             );
+            console.log("register register")
     };
 
     function request(user) { return { type: userConstant.REGISTER_REQUEST, user } }
@@ -79,22 +81,22 @@ function getAll() {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-// function _delete(id) {
-//     return dispatch => {
-//         dispatch(request(id));
+function _delete(id) {
+    return dispatch => {
+        dispatch(request(id));
 
-//         userService.delete(id)
-//             .then(
-//                 user => { 
-//                     dispatch(success(id));
-//                 },
-//                 error => {
-//                     dispatch(failure(id, error));
-//                 }
-//             );
-//     };
+        userService.delete(id)
+            .then(
+                user => { 
+                    dispatch(success(id));
+                },
+                error => {
+                    dispatch(failure(id, error));
+                }
+            );
+    };
 
-//     function request(id) { return { type: userConstant.DELETE_REQUEST, id } }
-//     function success(id) { return { type: userConstant.DELETE_SUCCESS, id } }
-//     function failure(id, error) { return { type: userConstant.DELETE_FAILURE, id, error } }
-// }
+    function request(id) { return { type: userConstant.DELETE_REQUEST, id } }
+    function success(id) { return { type: userConstant.DELETE_SUCCESS, id } }
+    function failure(id, error) { return { type: userConstant.DELETE_FAILURE, id, error } }
+}

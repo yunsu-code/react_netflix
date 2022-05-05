@@ -7,7 +7,7 @@ export const userService = {
     getAll,
     getById,
     update,
-    // delete: _delete
+    delete: _delete
 };
 
 async function login( useremail, password) {
@@ -72,14 +72,14 @@ async function update(user) {
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-// function _delete(id) {
-//     const requestOptions = {
-//         method: 'DELETE',
-//         headers: authHeader()
-//     };
+function _delete(id) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
 
-//     return fetch(`/users/${id}`, requestOptions).then(handleResponse);
-// }
+    return fetch(`/users/${id}`, requestOptions).then(handleResponse);
+}
 
 function handleResponse(response) {
     return response.text().then(text => {

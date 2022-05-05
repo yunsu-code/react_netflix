@@ -189,11 +189,25 @@
         &.type1 { //header내 박스툴팁
             border-radius: 3px;
             background-color: #000;
-            ul {padding: 5px 0;}
+            ul {padding: 0 0 10px 0;}
             .list {
                 width: 200px;
-                padding: 7px 10px;
-                font-size: 14px
+                padding: 7px 16px;
+                font-size: 14px;
+                a:hover {
+                    text-decoration: underline;
+                }
+                &.username {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                    span {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
         &.type2 { //단순 미니툴팁

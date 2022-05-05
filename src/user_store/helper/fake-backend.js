@@ -29,7 +29,7 @@ export function configureFakeBackend() {
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(responseJson)) });
                     } else {
                         // 둘중 하나가 틀린경우
-                        reject('Useremail or password is incorrect');
+                        reject('이메일 또는 비밀번호가 일치하지 않습니다.');
                     }
 
                     return;
@@ -78,7 +78,7 @@ export function configureFakeBackend() {
                     // validation
                     let duplicateUser = users.filter(user => { return user.useremail === newUser.useremail; }).length;
                     if (duplicateUser) {
-                        reject('Useremail "' + newUser.useremail + '" is already taken');
+                        reject('"' + newUser.useremail + '" 는 이미 존재하는 아이디입니다.');
                         return;
                     }
 
