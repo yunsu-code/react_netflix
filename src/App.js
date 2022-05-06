@@ -14,15 +14,6 @@ import { alertAction } from './user_store/action';
 import { PrivateRoute } from './user_store/component';
 import "./assets/scss/_style_base.scss";
 
-const Header = () => { 
-    if (window.location.pathname === "/login" || "/register") {
-        return <UnLoginHeader />; 
-    } 
-    if(window.location.pathname !== "/home" || "/movie") {
-        return <LoginHeader />; 
-    }
-}
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -86,19 +77,9 @@ class App extends React.Component {
                         </RegisterPage>
                         }
                     />
-                    {/* <Route path="/register" component={RegisterPage} /> */}
                     <Redirect from="*" to="/login" />
                 </Switch>
             </Router>
-            {/* <BrowserRouter history={history}>
-                <Header />
-                    <Switch>
-                        <Route path="/login" render={() => <LoginPage />} />
-                        <Route path="/register"  render={() => <RegisterPage />} />
-                        <PrivateRoute path="/"  render={() => <Home />} />
-                        <PrivateRoute path="/movie"  render={() => <Movie />} />
-                    </Switch>
-            </BrowserRouter> */}
             </>
         )
     }
